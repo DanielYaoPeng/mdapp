@@ -32,7 +32,8 @@ public class GoodsRelationService {
      * @return
      */
     public GoodsRelation getGoodsRelation(String goodsRelationId) {
-        return mdMapMongoTemplate.findById(goodsRelationId, GoodsRelation.class);
+        var list= mdMapMongoTemplate.findById(goodsRelationId, GoodsRelation.class);
+        return list;
     }
 
     /**
