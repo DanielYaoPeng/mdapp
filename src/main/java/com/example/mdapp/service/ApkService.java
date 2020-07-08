@@ -17,11 +17,23 @@ public class ApkService {
     @Autowired
     private ApkRepositories apkRepositories;
 
+    private  final ApkCacheService cache;
+
+    public ApkService(ApkCacheService cache){
+        this.cache=cache;
+    }
+
     public Apk getById(String apkId){
 
-       var result=apkRepositories.get(apkId);
+        var result=cache.get(apkId);
+        if(result!=null)
+            return result;
+
+
+       result=apkRepositories.get(apkId);
        if(result.getStatus()== ApkStatusEnum.IsDeleted.getValue())
            return null;
+        cache.set(apkId,result);
        return result;
     }
 }
