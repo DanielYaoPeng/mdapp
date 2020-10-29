@@ -1,11 +1,15 @@
 package com.example.mdapp.controller;
 
+import com.example.mdapp.dto.AppDeleteCacheRequest;
 import com.example.mdapp.entity.Apk;
 import com.example.mdapp.entity.GoodsRelation;
 import com.example.mdapp.service.ApkService;
 import com.example.mdapp.service.GoodsRelationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,5 +25,11 @@ public class AppController {
             return null;
         }
         return apkService.getById((id));
+    }
+
+    @PostMapping("app/deleteCache")
+    public Boolean deleteCache(@RequestBody  @Validated AppDeleteCacheRequest request){
+       var result=apkService.clearApkCache(request.getId());
+       return new Boolean(result) ;
     }
 }

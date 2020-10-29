@@ -47,4 +47,11 @@ public class ApkCacheService {
 
         ops.set(key.toLowerCase()+id.toLowerCase(), gson.toJson(entity),time, TimeUnit.MINUTES);
     }
+
+    public boolean delete(String id){
+        //var ops= redisTemplate.opsForValue();
+        String relkey=key.toLowerCase()+id.toLowerCase();
+
+        return redisTemplate.delete(relkey);
+    }
 }
