@@ -25,15 +25,15 @@ public class ApkService {
 
     public Apk getById(String apkId){
 
-        var result=cache.get(apkId);
-        if(result!=null)
-            return result;
+       // var result=cache.get(apkId);
+        //if(result!=null)
+            //return result;
 
 
-       result=apkRepositories.get(apkId);
+      var result=apkRepositories.get(apkId);
        if(result.getStatus()== ApkStatusEnum.IsDeleted.getValue())
            return null;
-        cache.set(apkId,result);
+       // cache.set(apkId,result);
        return result;
     }
 }
