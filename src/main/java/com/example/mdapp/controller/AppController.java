@@ -14,11 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequestMapping("/app")
 public class AppController {
     @Autowired
     private ApkService apkService;
 
-    @RequestMapping("app/get")
+    @RequestMapping("/get")
     @ResponseBody
     public Apk getById(String id){
         if(id.isEmpty()){
@@ -27,9 +28,10 @@ public class AppController {
         return apkService.getById((id));
     }
 
-    @PostMapping("app/deleteCache")
+    @PostMapping("/deleteCache")
+    @ResponseBody
     public Boolean deleteCache(@RequestBody  @Validated AppDeleteCacheRequest request){
        var result=apkService.clearApkCache(request.getId());
-       return new Boolean(result) ;
+       return result;
     }
 }
