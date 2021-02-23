@@ -1,6 +1,7 @@
 package com.example.mdapp.controller;
 
 import com.example.mdapp.dto.AppDeleteCacheRequest;
+import com.example.mdapp.dto.GetAppInfoBySheetRequest;
 import com.example.mdapp.entity.Apk;
 import com.example.mdapp.entity.GoodsRelation;
 import com.example.mdapp.service.ApkService;
@@ -12,6 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/app")
@@ -33,5 +37,11 @@ public class AppController {
     public Boolean deleteCache(@RequestBody  @Validated AppDeleteCacheRequest request){
        var result=apkService.clearApkCache(request.getId());
        return result;
+    }
+
+    @PostMapping("/getBySheet")
+    @ResponseBody
+    public Map<String, List<Apk>> GetBySheet(@RequestBody GetAppInfoBySheetRequest request){
+        return apkService.GetBySheet(request.worksheetIds);
     }
 }

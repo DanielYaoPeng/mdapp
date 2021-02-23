@@ -52,7 +52,7 @@ public class Apk {
 
     private Boolean IsMoveApp=false;
 
-    private List<String> appIds;
+    private List<String> apps;
 
     private Boolean isLock;
 

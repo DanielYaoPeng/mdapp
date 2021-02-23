@@ -28,4 +28,10 @@ public class ApkRepositories {
         List<Apk> result=  mongoTemplate.find(query,Apk.class);
         return result;
     }
+
+    public List<Apk> getAppEntityForAppSectionIds(List<String> appSectionIds)
+    {
+        Query query=Query.query(where("apps").in(appSectionIds));
+        return  mongoTemplate.find(query,Apk.class);
+    }
 }
