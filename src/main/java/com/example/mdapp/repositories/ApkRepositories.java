@@ -18,20 +18,19 @@ public class ApkRepositories {
     @Qualifier("mongoTemplate")
     private MongoTemplate mongoTemplate;
 
-    public Apk get(String  apkId){
+    public Apk get(String apkId) {
 
-        return mongoTemplate.findOne(query(where("apkid").is(apkId)),Apk.class);
+        return mongoTemplate.findOne(query(where("apkid").is(apkId)), Apk.class);
     }
 
-    public List<Apk> gets(List<String> ids){
-        Query query=Query.query(where("apkid").in(ids));
-        List<Apk> result=  mongoTemplate.find(query,Apk.class);
+    public List<Apk> gets(List<String> ids) {
+        Query query = Query.query(where("apkid").in(ids));
+        List<Apk> result = mongoTemplate.find(query, Apk.class);
         return result;
     }
 
-    public List<Apk> getAppEntityForAppSectionIds(List<String> appSectionIds)
-    {
-        Query query=Query.query(where("apps").in(appSectionIds));
-        return  mongoTemplate.find(query,Apk.class);
+    public List<Apk> getAppEntityForAppSectionIds(List<String> appSectionIds) {
+        Query query = Query.query(where("apps").in(appSectionIds));
+        return mongoTemplate.find(query, Apk.class);
     }
 }

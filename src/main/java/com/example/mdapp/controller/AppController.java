@@ -25,8 +25,8 @@ public class AppController {
 
     @RequestMapping("/get")
     @ResponseBody
-    public Apk getById(String id){
-        if(id.isEmpty()){
+    public Apk getById(String id) {
+        if (id.isEmpty()) {
             return null;
         }
         return apkService.getById((id));
@@ -34,14 +34,14 @@ public class AppController {
 
     @PostMapping("/deleteCache")
     @ResponseBody
-    public Boolean deleteCache(@RequestBody  @Validated AppDeleteCacheRequest request){
-       var result=apkService.clearApkCache(request.getId());
-       return result;
+    public Boolean deleteCache(@RequestBody @Validated AppDeleteCacheRequest request) {
+        var result = apkService.clearApkCache(request.getId());
+        return result;
     }
 
     @PostMapping("/getBySheet")
     @ResponseBody
-    public Map<String, List<Apk>> GetBySheet(@RequestBody GetAppInfoBySheetRequest request){
+    public Map<String, List<Apk>> GetBySheet(@RequestBody GetAppInfoBySheetRequest request) {
         return apkService.GetBySheet(request.worksheetIds);
     }
 }

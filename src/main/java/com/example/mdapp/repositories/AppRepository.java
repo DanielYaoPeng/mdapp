@@ -20,22 +20,23 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 
 @Repository
 public class AppRepository {
-    @Autowired
-    @Qualifier("mongoTemplate")
-    private MongoTemplate mongoTemplate;
+  @Autowired
+  @Qualifier("mongoTemplate")
+  private MongoTemplate mongoTemplate;
 
-    public AppEntity get(String  id){
+  public AppEntity get(String id) {
 
-        return mongoTemplate.findOne(query(where("id").is(id)),AppEntity.class);
-    }
+    return mongoTemplate.findOne(query(where("id").is(id)), AppEntity.class);
+  }
 
-    public List<AppEntity> GetBySheetId(List<String> sheetIds){
-      List<AppEntity> result=new ArrayList<>();
-      var criteria= Criteria.where("cfgs").elemMatch(Criteria.where("wsid").in(sheetIds)).and("atype").is(AppType.Worksheet.getValue());
-      Query query = query(criteria);
-      result = mongoTemplate.find(query,AppEntity.class);
-      //Criteria.where("products").elemMatch(Criteria.where("status").is(1).and("productId").is(channelId))
-        //db.tableName.find({"products":{"$elemMatch":{"productId":"4fa7367089cc56e4083cb7a8","status":1}}})
-      return result;
+  public List<AppEntity> GetBySheetId(List<String> sheetIds) {
+    List<AppEntity> result = new ArrayList<>();
+    var criteria = Criteria.where("cfgs").elemMatch(Criteria.where("wsid").in(sheetIds)).and("atype")
+        .is(AppType.Worksheet.getValue());
+    Query query = query(criteria);
+    result = mongoTemplate.find(query, AppEntity.class);
+    // Criteria.where("products").elemMatch(Criteria.where("status").is(1).and("productId").is(channelId))
+    // db.tableName.find({"products":{"$elemMatch":{"productId":"4fa7367089cc56e4083cb7a8","status":1}}})
+    return result;
   }
 }
