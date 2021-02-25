@@ -1,6 +1,7 @@
 package com.example.mdapp.controller;
 
 import com.example.mdapp.dto.AppDeleteCacheRequest;
+import com.example.mdapp.dto.AppDto;
 import com.example.mdapp.dto.GetAppInfoBySheetRequest;
 import com.example.mdapp.entity.Apk;
 import com.example.mdapp.entity.GoodsRelation;
@@ -41,7 +42,7 @@ public class AppController {
 
     @PostMapping("/getBySheet")
     @ResponseBody
-    public Map<String, List<Apk>> GetBySheet(@RequestBody GetAppInfoBySheetRequest request) {
+    public Map<String, List<AppDto>> GetBySheet(@RequestBody GetAppInfoBySheetRequest request) {
         return apkService.GetBySheet(request.worksheetIds);
     }
 }
