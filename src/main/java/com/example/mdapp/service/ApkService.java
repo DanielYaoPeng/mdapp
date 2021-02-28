@@ -58,6 +58,9 @@ public class ApkService {
         return cache.delete(apkId);
     }
 
+    /**
+     * 根据工作表id获取应用信息
+     */
     public Map<String, List<AppDto>> GetBySheet(List<String> worksheetIds) {
         Map<String, List<AppDto>> result = new HashMap<>();
         List<AppEntity> appSections = appRepository.GetBySheetId(worksheetIds);
@@ -82,6 +85,7 @@ public class ApkService {
         return result;
     }
 
+    //实体转换
     private List<AppDto> AppBusinessModelChange(List<Apk> apkEntities, List<AppEntity> appSetions, Boolean sheetInfo) {
         List<AppDto> result = new ArrayList<>();
         for (Apk appDto : apkEntities) {
@@ -137,6 +141,11 @@ public class ApkService {
         return result;
     }
 
+    /**
+     * 验证应用包是否有效
+     * @param licences 授权信息
+     * @return
+     */
     public Boolean CheckAppStatusForMAP(List<LicenceModel> licences) {
         if (licences == null || licences.size() == 0)
             return true;
