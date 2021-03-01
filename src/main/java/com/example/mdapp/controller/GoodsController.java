@@ -10,8 +10,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class GoodsController {
 
-    @Autowired
-    private GoodsRelationService goodsRelationService;
+   // @Autowired
+   // private GoodsRelationService goodsRelationService;
+
+    private final  GoodsRelationService goodsRelationService;
+
+    public GoodsController(GoodsRelationService goodsRelationService){
+        this.goodsRelationService=goodsRelationService;
+    }
 
     @RequestMapping("goods/getRelation")
     @ResponseBody

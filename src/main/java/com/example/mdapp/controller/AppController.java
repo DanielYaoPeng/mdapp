@@ -8,6 +8,7 @@ import com.example.mdapp.entity.GoodsRelation;
 import com.example.mdapp.service.ApkService;
 import com.example.mdapp.service.GoodsRelationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,11 +19,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @Scope("prototype") 多例模式，在Controller 定义变量要加上 static 不然会出现并发问题
+ */
+
 @Controller
+@Scope("prototype")
 @RequestMapping("/app")
 public class AppController {
     @Autowired
     private ApkService apkService;
+
+   // private int num = 0; //要加上static
 
     @RequestMapping("/get")
     @ResponseBody

@@ -15,7 +15,7 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 @Repository
 public class ApkRepositories {
     @Autowired
-    @Qualifier("mongoTemplate")
+    @Qualifier("mongoTemplate") //@Qualifier 如果接口或者抽象类有多个实现类，Qualifier表示显示指定某个一实现类来实现接口 ，此属性必须配合Autowired使用
     private MongoTemplate mongoTemplate;
 
     public Apk get(String apkId) {

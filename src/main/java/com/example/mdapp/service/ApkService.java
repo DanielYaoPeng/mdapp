@@ -60,6 +60,8 @@ public class ApkService {
 
     /**
      * 根据工作表id获取应用信息
+     * @param worksheetIds
+     * @return
      */
     public Map<String, List<AppDto>> GetBySheet(List<String> worksheetIds) {
         Map<String, List<AppDto>> result = new HashMap<>();

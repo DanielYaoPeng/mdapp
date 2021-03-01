@@ -31,7 +31,7 @@ import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
         return mongoTemplate;
     }
 
-    @Bean(name = "mdMapMongoTemplate")
+    @Bean(name = "mdMapMongoTemplate")  //Bean   与@Configuration、@Component配合使用(配置类，组件类)， 指示组件里得方法或者属性，可自定义名称，自动装配
     MongoTemplate mdMapMongoTemplate() throws Exception {
         MongoTemplate mdMongoTemplate =  new MongoTemplate(new SimpleMongoClientDatabaseFactory(mdMapUri));
         return mdMongoTemplate;
