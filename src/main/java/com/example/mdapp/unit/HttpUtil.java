@@ -16,7 +16,7 @@ import java.util.concurrent.ExecutionException;
 public class HttpUtil {
 
     // private static Logger logger =
-    // Logger.getLogger(String.valueOf(HttpUtil.class));
+    // Logger.getLogger(String.valueOf(HttpUtil.class));throws IOException, InterruptedException
     // protected Logger logger = LoggerFactory.getLogger(HttpUtils.class);
 
 
@@ -26,14 +26,24 @@ public class HttpUtil {
      *
      * @return
      */
-    public static String doGet(String url) throws IOException, InterruptedException {
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create(url)).build();
+    public static String doGet(String url)  {
+        String result= "";
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create(url)).build();
+    
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+    
+            System.out.println(response.body());
+            result = response.body();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        catch(InterruptedException e){
+            e.printStackTrace();
+        }
 
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-        System.out.println(response.body());
-        return response.body();
+      return result;
     }
 
     /**
