@@ -60,6 +60,7 @@ public class ApkService {
 
     /**
      * 根据工作表id获取应用信息
+     *
      * @param worksheetIds
      * @return
      */
@@ -115,7 +116,7 @@ public class ApkService {
                 entity.setGoodsId(appDto.getGoodsId());
                 entity.setIcon(appDto.getAvatar());
 
-                if(appDto.getExtLicence()!=null){
+                if (appDto.getExtLicence() != null) {
                     var licence = appDto.getExtLicence().parallelStream().map(item -> {
                         LicenceModel iteModel = new LicenceModel(item);
                         return iteModel;
@@ -131,8 +132,8 @@ public class ApkService {
                 entity.setUpdateTime(appDto.getUtime());
                 entity.setSourceProjectId(appDto.getSourceProjectId());
 
-                var worksheetInfos =  entities.parallelStream().map(item->{
-                    EntityInfo itemModel =new EntityInfo(item.getWsid(),item.getDsName(),item.getWsType(),item.getIcon(), appDto.getColor());
+                var worksheetInfos = entities.parallelStream().map(item -> {
+                    EntityInfo itemModel = new EntityInfo(item.getWsid(), item.getDsName(), item.getWsType(), item.getIcon(), appDto.getColor());
                     return itemModel;
                 }).collect(Collectors.toList());
 
@@ -145,6 +146,7 @@ public class ApkService {
 
     /**
      * 验证应用包是否有效
+     *
      * @param licences 授权信息
      * @return
      */
